@@ -7,7 +7,7 @@ for Confluence provides.
 
 ## Installation
 
-To install from [artifactory](https://metacom.metaswitch.com/docs/DOC-107560) you can run this command:
+To install from pypi use:
 
 ~~~~
 pip install comala-workflows
