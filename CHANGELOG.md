@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Nothing
 
+## [0.3.0] - 2017-01-19
+
+### Added
+- ComalaWorkflowsClient is now context managed using a single session improving performance.
+- README.md is converted to rst format for pypi display
+- pypi classifiers added
+
+### Changed
+- Nothing
+
 ## [0.2.0] - 2017-01-15
 First public release of the library
 
@@ -21,5 +31,6 @@ First public release of the library
 ### Changed
 - Nothing
 
-[Unreleased]: https://github.com/DaveTCode/comala-workflow-python-lib/compare/0.2.0...HEAD
-[0.2.0]: https://github.com/DaveTCode/comala-workflow-python-lib/compare/0.0.1...0.2.0
+[Unreleased]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.0.1...0.2.0

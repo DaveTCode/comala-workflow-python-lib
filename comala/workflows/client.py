@@ -25,6 +25,15 @@ class ComalaWorkflowsClient:
         self._url = url
         self._basic_auth = basic_auth
         self._base_api_url = f'{self._url}/rest/cw/1'
+        self._client: requests.Session = None
+
+    def __enter__(self):
+        self._client = requests.session()
+        self._client.auth = self._basic_auth
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self._client:
+            self._client.close()
 
     def status(self, page_id: int, expand: Optional[str] = None) -> PageWorkflow:
         """
@@ -44,7 +53,11 @@ class ComalaWorkflowsClient:
         if expand:
             params['expand'] = expand
 
-        result = requests.get(url, params=params, auth=self._basic_auth).json()
+        if self._client:
+            result = self._client.get(url, params=params).json()
+        else:
+            result = requests.get(url, params=params, auth=self._basic_auth).json()
+
         state = WorkflowState(result['state']['name'], result['state']['description'], result['state']['initial'],
                               result['state']['final'])
         tasks = None

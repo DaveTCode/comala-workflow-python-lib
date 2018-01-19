@@ -1,13 +1,16 @@
 language: python
 sudo: false
 python:
-  - '3.5'
   - '3.6'
+addons:
+  apt_packages:
+    - pandoc
 install:
   - python setup.py install
-  - pip install pycodestyle
+  - pip install pycodestyle mypy pypandoc
 script:
   - pycodestyle --first comala
+  - mypy comala
   - python setup.py test --addopts '--cov comala tests'
 deploy:
   provider: pypi

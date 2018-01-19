@@ -13,3 +13,6 @@ class WorkflowState:
         self.description = description
         self.initial = initial
         self.final = final
+
+    def __str__(self):
+        return self.name

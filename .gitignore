@@ -185,3 +185,5 @@ GitHub.sublime-settings
 .idea/modules.xml
 .idea/vcs.xml
 .idea/*.iml
+
+.mypy_cache

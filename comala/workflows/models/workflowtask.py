@@ -15,3 +15,6 @@ class WorkflowTask:
         self.task_id = task_id
         self.name = name
         self.assignee = assignee
+
+    def __str__(self):
+        return f'{self.task_id} | {self.name}'
