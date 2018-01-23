@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/DaveTCode/comala-workflow-python-lib.svg?branch=master)](https://travis-ci.org/DaveTCode/comala-workflow-python-lib)
+[![PyPI version](https://badge.fury.io/py/comala-workflows.svg)](https://badge.fury.io/py/comala-workflows)
 
 # Comala Workflow Python Library
 
