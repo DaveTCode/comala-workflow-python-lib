@@ -19,7 +19,7 @@ pip install comala-workflows
 ```python
 from comala.workflows.client import ComalaWorkflowsClient
 with ComalaWorkflowsClient("https://server:port/contextpath", ("user", "pass")) as client:
-    status = client.status(page_id=1, expand="state,states,approvals,actions,tasks")
+    status = client.status(page_id=1, expand=['state','states','approvals','actions','tasks'])
 ```
 
 ## Development and Deployment

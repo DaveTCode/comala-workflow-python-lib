@@ -1,9 +1,7 @@
 from comala.workflows.models.workflow import PageWorkflow
-from comala.workflows.models.workflowstate import WorkflowState
-from comala.workflows.models.workflowtask import WorkflowTask
 import logging
 import requests
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
@@ -15,7 +13,8 @@ class ComalaWorkflowsClient:
     provides an abstraction over the REST API which comala workflows provides
     in Confluence.
     """
-    def __init__(self, url: str, basic_auth: Tuple[str, str]) -> None:
+    def __init__(self, url, basic_auth):
+        # type: (str, Tuple[str, str]) -> None
         """
         :param url: The base URL on which you access the confluence instance
         in a web browser.
@@ -24,8 +23,8 @@ class ComalaWorkflowsClient:
         """
         self._url = url
         self._basic_auth = basic_auth
-        self._base_api_url = f'{self._url}/rest/cw/1'
-        self._client: requests.Session = None
+        self._base_api_url = '{}/rest/cw/1'.format(self._url)
+        self._client = None  # type: requests.Session
 
     def __enter__(self):
         self._client = requests.session()
@@ -35,7 +34,8 @@ class ComalaWorkflowsClient:
         if self._client:
             self._client.close()
 
-    def status(self, page_id: int, expand: Optional[str] = None) -> PageWorkflow:
+    def status(self, page_id, expand=None):
+        # type: (int, Optional[List[str]]) -> PageWorkflow
         """
         Get the status of a page as understood by Comala Workflows.
 
@@ -47,7 +47,7 @@ class ComalaWorkflowsClient:
 
         :return: A PageWorkflow object containing information about the page.
         """
-        url = f'{self._base_api_url}/content/{page_id}/status'
+        url = '{}/content/{}/status'.format(self._base_api_url, page_id)
         params = {}
 
         if expand:
@@ -58,11 +58,4 @@ class ComalaWorkflowsClient:
         else:
             result = requests.get(url, params=params, auth=self._basic_auth).json()
 
-        state = WorkflowState(result['state']['name'], result['state']['description'], result['state']['initial'],
-                              result['state']['final'])
-        tasks = None
-        if 'tasks' in result:
-            tasks = [WorkflowTask(t['id'], t['name'], None if 'assignee' not in t else t['assignee']['name'])
-                     for t in result['tasks']]
-
-        return PageWorkflow(state, tasks)
+        return PageWorkflow(result)

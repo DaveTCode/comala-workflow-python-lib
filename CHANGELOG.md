@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Nothing
 
+## [0.4.0] - 2017-01-19
+
+### Added
+- Support added for python 3.5 & 2.7
+- Added completion date, due date and completion message to the task model
+
+### Changed
+- Nothing
+
 ## [0.3.0] - 2017-01-19
 
 ### Added
@@ -31,6 +40,7 @@ First public release of the library
 ### Changed
 - Nothing
 
-[Unreleased]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.4.0...HEAD
+[0.3.0]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/DaveTCode/communardo-metadata-python-lib/compare/0.0.1...0.2.0
