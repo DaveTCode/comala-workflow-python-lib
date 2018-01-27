@@ -51,7 +51,7 @@ class ComalaWorkflowsClient:
         params = {}
 
         if expand:
-            params['expand'] = expand
+            params['expand'] = ','.join(expand)
 
         if self._client:
             result = self._client.get(url, params=params).json()

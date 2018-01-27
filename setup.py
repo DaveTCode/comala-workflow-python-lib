@@ -16,7 +16,7 @@ except ImportError:
 setup(
     name='comala-workflows',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    version='0.4.0',
+    version='0.4.1',
     description='A simple wrapper around the Comala Workflows REST API.',
     long_description=long_description,
     author='David Tyler',
