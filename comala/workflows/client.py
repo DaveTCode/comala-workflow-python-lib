@@ -64,4 +64,3 @@ class ComalaWorkflowsClient:
             return None
         else:
             raise RuntimeError('Status code %d on url %s', result.status_code, url)
-
