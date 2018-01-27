@@ -11,7 +11,12 @@ class WorkflowState:
     """
     def __init__(self, json):  # type: (Dict[str, Any]) -> None
         self.name = json['name']  # type: str
-        self.description = json['description']  # type: str
+
+        if 'description' in json:
+            self.description = json['description']  # type: str
+        else:
+            self.description = ''  # type: str
+
         self.initial = json['initial']  # type: bool
         self.final = json['final']  # type: bool
 
