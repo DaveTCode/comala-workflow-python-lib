@@ -6,8 +6,7 @@ readme = path.join(path.abspath(path.dirname(__file__)), 'README.md')
 
 try:
     import pypandoc
-    with open(readme, encoding='utf-8') as f:
-        long_description = pypandoc.convert_text(f.read(), 'md', format='rst')
+    long_description = pypandoc.convert(readme, 'rst')
 except ImportError:
     print("warning: pypandoc module not found, could not convert Markdown to RST")
     with open(readme, encoding='utf-8') as f:
@@ -16,7 +15,7 @@ except ImportError:
 setup(
     name='comala-workflows',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    version='0.4.1',
+    version='0.4.2',
     description='A simple wrapper around the Comala Workflows REST API.',
     long_description=long_description,
     author='David Tyler',
