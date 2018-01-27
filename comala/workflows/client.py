@@ -35,7 +35,7 @@ class ComalaWorkflowsClient:
             self._client.close()
 
     def status(self, page_id, expand=None):
-        # type: (int, Optional[List[str]]) -> PageWorkflow
+        # type: (int, Optional[List[str]]) -> Optional[PageWorkflow]
         """
         Get the status of a page as understood by Comala Workflows.
 
@@ -54,8 +54,14 @@ class ComalaWorkflowsClient:
             params['expand'] = ','.join(expand)
 
         if self._client:
-            result = self._client.get(url, params=params).json()
+            result = self._client.get(url, params=params)
         else:
-            result = requests.get(url, params=params, auth=self._basic_auth).json()
+            result = requests.get(url, params=params, auth=self._basic_auth)
 
-        return PageWorkflow(result)
+        if result.status_code == 200:
+            return PageWorkflow(result.json())
+        elif result.status_code == 204:
+            return None
+        else:
+            raise RuntimeError('Status code %d on url %s', result.status_code, url)
+
